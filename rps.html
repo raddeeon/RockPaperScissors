@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // could make it return rock paper or scissors
+
+        let computerSelection ; 
+        let playerSelection;
+        let patternCombo; // lo uso per concatenare in una stringa i valori di computerSelection e playerSelection 
+        
+        /**
+        rock == 0;
+        paper == 1;
+        scissor==2;
+        */
+
+     function playRound(playerSelection, computerSelection){
+       
+            patternCombo = computerSelection.toString() + playerSelection.toString(); // ritorna valori 00,01,02,10,11,12,20,21,22 in stringa, combinazioni di rock paper scissor
+            
+                if(patternCombo == "02" || patternCombo == "10" || patternCombo == "21"){
+                    return "you lose";
+                } else if(patternCombo == "01" || patternCombo == "12" || patternCombo == "20" ){
+                    return "you win";
+                } else if(playerSelection==computerSelection){
+                    return "it's a tie";
+                }
+
+        }
+        
+        let playerScore = 0, computerScore = 0, singleRound;
+        function game() {
+            
+            for (i = 0 ; i < 5; i++){  
+                playerSelection = window.prompt("select 0 for rock, 1 for paper, 2 for scissor");
+                computerSelection = getComputeChoice();
+                singleRound = playRound(playerSelection, computerSelection);
+                if (singleRound == "you lose"){
+                    computerScore++;
+                    console.log(singleRound + "  " + computerScore +  " " + playerScore + " " + computerSelection + " " + playerSelection);
+                } else if(singleRound == "you win") {
+                    playerScore++;
+                    console.log(singleRound + "  " + computerScore +  " " + playerScore + " " + computerSelection + " " + playerSelection);
+                } else if( singleRound=="it's a tie" ) {
+                    console.log(singleRound + "  " + computerScore +  " " + playerScore + " " + computerSelection + " " + playerSelection);
+
+                }
+                
+            }
+        }
+
+        // genera numero random 0,1,2
+        function getComputeChoice (){
+            let randPcChoiceNum = Math.floor(Math.random()*3);
+            return randPcChoiceNum;
+        }
+     /**   function getPlayerChoice(){
+            let playerSelection = prompt("");
+        }
+        **/
+        
+        
+        
+        game();
+
+
+    </script>
+    
+</body>
+</html>
